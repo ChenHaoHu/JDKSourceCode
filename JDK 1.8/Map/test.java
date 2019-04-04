@@ -1,11 +1,6 @@
 
-
-
-
-
-public class Main{
+public class test{
     public static void main(String[] args) {
-      
      
         System.out.println(tableSizeFor(1)); // ---1
         System.out.println(tableSizeFor(2)); // ---2
@@ -14,7 +9,7 @@ public class Main{
         System.out.println(tableSizeFor(6)); // ---8
         System.out.println(tableSizeFor(7)); // ---8
         System.out.println(tableSizeFor(8)); // ---8
-        System.out.println(tableSizeFor(9)); // ---16
+        System.out.println(tableSizeFor(9312321)); // ---16
 
     }
 
