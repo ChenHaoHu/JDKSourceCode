@@ -1,15 +1,39 @@
+/*
+ * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
 
 /*
  *
  *
  *
  *
- *  Doug Lea 大佬
+ *
  * Written by Doug Lea with assistance from members of JCP JSR-166
  * Expert Group and released to the public domain, as explained at
  * http://creativecommons.org/publicdomain/zero/1.0/
  */
 
+package java.util.concurrent;
 
 import java.io.ObjectStreamField;
 import java.io.Serializable;
@@ -49,8 +73,8 @@ import java.util.function.ToLongFunction;
 import java.util.stream.Stream;
 
 /**
- * A hash table supporting full concurrency of retrievals （完全并发检索） and
- * high expected concurrency for updates（）. This class obeys the
+ * A hash table supporting full concurrency of retrievals and
+ * high expected concurrency for updates. This class obeys the
  * same functional specification as {@link java.util.Hashtable}, and
  * includes versions of methods corresponding to each method of
  * {@code Hashtable}. However, even though all operations are

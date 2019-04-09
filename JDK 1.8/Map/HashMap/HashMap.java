@@ -1,5 +1,6 @@
 package java.util;
 
+
 import java.io.IOException;
 import java.io.InvalidObjectException;
 import java.io.Serializable;
@@ -813,6 +814,10 @@ MIN_TREEIFY_CAPACITY: 在转变成树之前，还会有一次判断，只有键�
      *
      * @return a set view of the keys contained in this map
      */
+
+    transient Set<Map.Entry<K,V>>  keySet;
+
+    private Collection<V> values;
     public Set<K> keySet() {
         Set<K> ks = keySet;
         if (ks == null) {
