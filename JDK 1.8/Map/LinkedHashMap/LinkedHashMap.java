@@ -196,7 +196,7 @@ public class LinkedHashMap<K,V>
 
     /**
      * 
-     * 插入顺序 还是  访问顺序
+     * 插入顺序 还是  访问顺序  LRU
      * The iteration ordering method for this linked hash map: <tt>true</tt>
      * for access-order, <tt>false</tt> for insertion-order.
      *
@@ -209,16 +209,20 @@ public class LinkedHashMap<K,V>
     // link at the end of list
     private void linkNodeLast(LinkedHashMap.Entry<K,V> p) {
         LinkedHashMap.Entry<K,V> last = tail;
+        //把p设置为尾部
         tail = p;
         if (last == null)
+             //链表为空
             head = p;
         else {
+            //把以前的变为他的前缀
             p.before = last;
+            //后来的接上去
             last.after = p;
         }
     }
 
-    // apply src's links to dst
+    // apply src's links to dst  替换吧
     private void transferLinks(LinkedHashMap.Entry<K,V> src,
                                LinkedHashMap.Entry<K,V> dst) {
         LinkedHashMap.Entry<K,V> b = dst.before = src.before;
@@ -234,6 +238,7 @@ public class LinkedHashMap<K,V>
     }
 
     // overrides of HashMap hook methods
+    //Reset to initial default state.  Called by clone and readObject.
 
     void reinitialize() {
         super.reinitialize();
@@ -243,6 +248,7 @@ public class LinkedHashMap<K,V>
     Node<K,V> newNode(int hash, K key, V value, Node<K,V> e) {
         LinkedHashMap.Entry<K,V> p =
             new LinkedHashMap.Entry<K,V>(hash, key, value, e);
+        //插入到序列后面
         linkNodeLast(p);
         return p;
     }
@@ -257,6 +263,7 @@ public class LinkedHashMap<K,V>
 
     TreeNode<K,V> newTreeNode(int hash, K key, V value, Node<K,V> next) {
         TreeNode<K,V> p = new TreeNode<K,V>(hash, key, value, next);
+        //插入到序列后面
         linkNodeLast(p);
         return p;
     }
@@ -269,8 +276,11 @@ public class LinkedHashMap<K,V>
     }
 
     void afterNodeRemoval(Node<K,V> e) { // unlink
-        LinkedHashMap.Entry<K,V> p =
-            (LinkedHashMap.Entry<K,V>)e, b = p.before, a = p.after;
+        LinkedHashMap.Entry<K,V> 
+            p = (LinkedHashMap.Entry<K,V>)e, 
+            b = p.before, 
+            a = p.after;
+            //将该节点的前驱和后驱置空
         p.before = p.after = null;
         if (b == null)
             head = a;
@@ -290,9 +300,12 @@ public class LinkedHashMap<K,V>
         }
     }
 
-    void afterNodeAccess(Node<K,V> e) { // move node to last
+    //当 accessOrder 为true 时 需要 move node to last
+    void afterNodeAccess(Node<K,V> e) { 
         LinkedHashMap.Entry<K,V> last;
+        //不是最后一位 如果是最后一位 那么不需要移动
         if (accessOrder && (last = tail) != e) {
+            
             LinkedHashMap.Entry<K,V> p =
                 (LinkedHashMap.Entry<K,V>)e, b = p.before, a = p.after;
             p.after = null;
@@ -402,6 +415,7 @@ public class LinkedHashMap<K,V>
     public boolean containsValue(Object value) {
         for (LinkedHashMap.Entry<K,V> e = head; e != null; e = e.after) {
             V v = e.value;
+            //先双等于检查 equals 消耗性能
             if (v == value || (value != null && value.equals(v)))
                 return true;
         }
@@ -425,8 +439,11 @@ public class LinkedHashMap<K,V>
      */
     public V get(Object key) {
         Node<K,V> e;
+        //hashmap  方法
         if ((e = getNode(hash(key), key)) == null)
             return null;
+
+            //判断 accessOrder 是否需要按照访问顺序排序
         if (accessOrder)
             afterNodeAccess(e);
         return e.value;
