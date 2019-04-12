@@ -288,7 +288,7 @@ public class LinkedList<E>
      * More formally, returns {@code true} if and only if this list contains
      * at least one element {@code e} such that
      * <tt>(o==null&nbsp;?&nbsp;e==null&nbsp;:&nbsp;o.equals(e))</tt>.
-     *
+     * 
      * @param o element whose presence in this list is to be tested
      * @return {@code true} if this list contains the specified element
      */
