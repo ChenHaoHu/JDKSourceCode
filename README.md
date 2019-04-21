@@ -16,4 +16,5 @@
 * 阅读 LinkedHashMap 与 LinkedList 源码
 * 阅读 Integer 
 * 阅读 Long 
+* 阅读 ThreadLocal 
 * 阅读 ReentrantLock 

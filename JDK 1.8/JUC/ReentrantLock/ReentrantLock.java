@@ -14,6 +14,8 @@ package java.util.concurrent.locks;
 import java.util.concurrent.TimeUnit;
 import java.util.Collection;
 
+
+// https://www.cnblogs.com/java-zhao/p/5131544.html
 /**
  * A reentrant(可重入的) mutual exclusion （互斥） {@link Lock} with the same basic
  * behavior and semantics （语义）as the implicit（隐性） monitor lock accessed using
