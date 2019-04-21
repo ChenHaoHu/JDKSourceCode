@@ -1,5 +1,7 @@
 package Integer;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 public class Main{  
  
     public static void main(String[] args) {
@@ -13,6 +15,8 @@ public class Main{
         System.out.println(Integer.toString(1000,16));
         System.out.println(i.hashCode());  //重点
         System.out.println(Integer.decode("02132312")); //解码 自行
+
+        
 
     }
 }

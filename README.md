@@ -15,3 +15,5 @@
 * 分析 AQS 部分源码 抢占式流程注释完全，可以参考
 * 阅读 LinkedHashMap 与 LinkedList 源码
 * 阅读 Integer 
+* 阅读 Long 
+* 阅读 ReentrantLock 
